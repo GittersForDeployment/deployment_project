@@ -184,7 +184,7 @@ with DAG(
     'dag_data_cleaning',
     default_args=default_args,
     description='Clean and validate bike store data',
-    schedule_interval='0 */2 * * *',  # Every 2 hours
+    schedule='0 */2 * * *',  # Every 2 hours
     catchup=False,
     tags=['data-cleaning', 'validation'],
 ) as dag:

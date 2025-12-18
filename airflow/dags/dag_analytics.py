@@ -196,7 +196,7 @@ with DAG(
     'dag_analytics',
     default_args=default_args,
     description='Generate bike store analytics and KPIs',
-    schedule_interval='0 2 * * *',
+    schedule='0 2 * * *',
     catchup=False,
     tags=['analytics', 'reporting', 'kpi'],
 ) as dag:

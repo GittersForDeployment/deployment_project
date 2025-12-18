@@ -189,7 +189,7 @@ with DAG(
     'dag_data_simulator',
     default_args=default_args,
     description='Generate synthetic bike store data',
-    schedule_interval='*/15 * * * *',
+    schedule='*/15 * * * *',
     catchup=False,
     tags=['data-generation', 'bike-store'],
 ) as dag:
