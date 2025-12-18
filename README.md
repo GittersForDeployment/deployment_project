@@ -93,8 +93,8 @@ deployment_project/
 │
 ├── mysql/                        # MySQL configurations
 │   ├── init/                     # Initialization scripts
-│   │   ├── 01_schema.sql
-│   │   └── 02_seed_data.sql
+│   │   ├── create_tables.sql
+│   │   └── insert.sql
 │   └── conf/                     # MySQL configuration files
 │
 ├── docker-compose.dev.yml        # Development environment
