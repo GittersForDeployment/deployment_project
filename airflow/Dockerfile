@@ -17,8 +17,11 @@ COPY requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
 COPY dags/ /opt/airflow/dags/
+COPY entrypoint.sh /entrypoint.sh
 
-COPY --chmod=0755 entrypoint.sh /entrypoint.sh
+USER root
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
+
 USER airflow
 
 EXPOSE 8080
