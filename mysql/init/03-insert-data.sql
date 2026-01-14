@@ -1,6 +1,6 @@
 USE pipeline_data;
 
-INSERT INTO BRANDS (BRAND_ID, BRAND_NAME) 
+INSERT INTO brands (brand_id, brand_name) 
 VALUES
     (1, 'Electra'),
     (2, 'Haro'),
@@ -12,7 +12,7 @@ VALUES
     (8, 'Surly'),
     (9, 'Trek');
 
-INSERT INTO CATEGORIES (category_id, category_name) 
+INSERT INTO categories (category_id, category_name) 
 VALUES
     (1, 'Children Bicycles'),
     (2, 'Comfort Bicycles'),
@@ -22,7 +22,7 @@ VALUES
     (6, 'Mountain Bikes'),
     (7, 'Road Bikes');
 
-INSERT INTO CUSTOMERS (customer_id, first_name, last_name, phone, email, street, city, state, zip_code) 
+INSERT INTO customers (customer_id, first_name, last_name, phone, email, street, city, state, zip_code) 
 VALUES
     (1, 'Debra', 'Burks', NULL, 'debra.burks@yahoo.com', '9273 Thorne Ave. ', 'Orchard Park', 'NY', '14127'),
     (2, 'Kasha', 'Todd', NULL, 'kasha.todd@yahoo.com', '910 Vine Street ', 'Campbell', 'CA', '95008'),
@@ -35,13 +35,13 @@ VALUES
     (9, 'Genoveva', 'Baldwin', NULL, 'genoveva.baldwin@msn.com', '8550 Spruce Drive ', 'Port Washington', 'NY', '11050'),
     (10, 'Pamelia', 'Newman', NULL, 'pamelia.newman@gmail.com', '476 Chestnut Ave. ', 'Monroe', 'NY', '10950');
 
-INSERT INTO STORES (store_id, store_name, phone, email, street, city, state, zip_code) 
+INSERT INTO stores (store_id, store_name, phone, email, street, city, state, zip_code) 
 VALUES 
     (1, 'Santa Cruz Bikes', '(831) 476-4321', 'santacruz@bikes.shop', '3700 Portola Drive', 'Santa Cruz', 'CA', '95060'),
     (2, 'Baldwin Bikes', '(516) 379-8888', 'baldwin@bikes.shop', '4200 Chestnut Lane', 'Baldwin', 'NY', '11432'),
     (3, 'Rowlett Bikes', '(972) 530-5555', 'rowlett@bikes.shop', '8000 Fairway Avenue', 'Rowlett', 'TX', '75088');
 
-INSERT INTO STAFFS (staff_id, first_name, last_name, email, phone, active, store_id, manager_id) 
+INSERT INTO staffs (staff_id, first_name, last_name, email, phone, active, store_id, manager_id) 
 VALUES 
     (1, 'Fabiola', 'Jackson', 'fabiola.jackson@bikes.shop', '(831) 555-5554', 1, 1, NULL),
     (2, 'Mireya', 'Copeland', 'mireya.copeland@bikes.shop', '(831) 555-5555', 1, 1, 1),
@@ -54,7 +54,7 @@ VALUES
     (9, 'Layla', 'Terrell', 'layla.terrell@bikes.shop', '(972) 530-5556', 1, 3, 7),
     (10, 'Bernardine', 'Houston', 'bernardine.houston@bikes.shop', '(972) 530-5557', 1, 3, 7);
 
-INSERT INTO PRODUCTS (product_id, product_name, brand_id, category_id, model_year, list_price) 
+INSERT INTO products (product_id, product_name, brand_id, category_id, model_year, list_price) 
 VALUES
     (1, 'Trek 820 - 2016', 9, 6, 2016, 379.99),
     (2, 'Ritchey Timberwolf Frameset - 2016', 5, 6, 2016, 749.99),
@@ -67,7 +67,7 @@ VALUES
     (9, 'Trek Conduit+ - 2016', 9, 5, 2016, 2999.99),
     (10, 'Surly Straggler - 2016', 8, 4, 2016, 1549);
 
-INSERT INTO STOCKS (store_id, product_id, quantity) 
+INSERT INTO stocks (store_id, product_id, quantity) 
 VALUES 
     (1, 1, 27),
     (1, 2, 5),
@@ -88,7 +88,7 @@ VALUES
     (3, 2, 7),
     (3, 3, 9);
 
-INSERT INTO ORDERS (order_id, customer_id, order_status, order_date, required_date, shipped_date, store_id, staff_id) 
+INSERT INTO orders (order_id, customer_id, order_status, order_date, required_date, shipped_date, store_id, staff_id) 
 VALUES 
     (1, 1, '4', '2016-01-01', '2016-01-03', '2016-01-03', 1, 2),
     (2, 2, '4', '2016-01-01', '2016-01-04', '2016-01-03', 2, 6),
@@ -101,7 +101,7 @@ VALUES
     (9, 9, '4', '2016-01-05', '2016-01-08', '2016-01-08', 1, 2),
     (10, 10, '4', '2016-01-05', '2016-01-06', '2016-01-06', 2, 6);
 
-INSERT INTO ORDER_ITEMS (order_id, item_id, product_id, quantity, list_price, discount) 
+INSERT INTO order_items (order_id, item_id, product_id, quantity, list_price, discount) 
 VALUES 
     (1, 1, 1, 1, 379.99, 0.2),
     (1, 2, 8, 2, 1799.99, 0.07),
