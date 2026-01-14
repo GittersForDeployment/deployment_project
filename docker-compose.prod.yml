@@ -22,6 +22,7 @@ services:
       context: ./airflow
       dockerfile: Dockerfile
     container_name: airflow-prod
+    image: ${DOCKERHUB_USERNAME}/airflow-prod-app:latest
     env_file:
       - .env.prod
     ports:
