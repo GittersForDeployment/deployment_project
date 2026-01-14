@@ -1,0 +1,11 @@
+.env.dev
+.env.prod
+*.env
+!.env.example
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.DS_Store
+.idea/
+.vscode/

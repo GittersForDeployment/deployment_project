@@ -1,0 +1,3 @@
+PyMySQL
+apache-airflow-providers-docker
+apache-airflow-providers-mysql
