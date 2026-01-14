@@ -12,18 +12,26 @@ echo "MySQL is ready"
 echo "Initializing Airflow database..."
 airflow db migrate
 
-# Create default admin user
-echo "Setting up admin user..."
-if airflow users create \
-    --username admin \
-    --password admin \
-    --firstname Admin \
-    --lastname User \
-    --role Admin 2>/dev/null; then
-  echo "Admin user created"
-else
-  echo "Admin user already exists"
-fi
+# Create default dev user from environment variables
+echo "Setting up Airflow user..."
+AIRFLOW_USERNAME=${AIRFLOW_USERNAME:-dev_user}
+AIRFLOW_PASSWORD=${AIRFLOW_PASSWORD:-dev_user}
+AIRFLOW_EMAIL=${AIRFLOW_EMAIL:-dev@example.com}
 
-echo "Starting Airflow..."
-exec airflow standalone
+airflow users create \
+    --username "$AIRFLOW_USERNAME" \
+    --firstname Airflow \
+    --lastname User \
+    --role Admin \
+    --email "$AIRFLOW_EMAIL" \
+    --password "$AIRFLOW_PASSWORD" || echo "User already exists"
+
+echo "Airflow user setup complete. Username: $AIRFLOW_USERNAME"
+
+echo "Starting Airflow webserver and scheduler..."
+# Start scheduler in background
+airflow scheduler &
+SCHEDULER_PID=$!
+
+# Start webserver in foreground
+exec airflow webserver --port 8080
