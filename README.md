@@ -129,3 +129,98 @@ deployment_project/
 ```
 
 ---
+
+## 🚀 Deployment Options
+
+### Option 1: Docker Compose (Development)
+
+See the Docker Compose sections below for local development setup.
+
+### Option 2: Kubernetes (Minikube)
+
+Deploy to a local Kubernetes cluster using Minikube.
+
+#### Prerequisites: Install Kubernetes Tools
+
+```bash
+# Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+# Install Minikube for local testing
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+# Start Minikube cluster
+minikube start --driver=docker
+```
+
+#### Setup Environment Files
+
+The Kubernetes deployments use `.env` files for configuration. Copy the environment-specific files:
+
+```bash
+# For development deployment
+cp .env.dev deploy/dev/.env
+
+# For production deployment
+cp .env.prod deploy/prod/.env
+```
+
+**Note:** The `.env` files in `deploy/dev/` and `deploy/prod/` are gitignored. You must create them from the root `.env.dev` and `.env.prod` files.
+
+#### Deploy to Development
+
+```bash
+# Deploy all resources to dev namespace
+kubectl apply -k deploy/dev/
+
+# Check deployment status
+kubectl get all -n data-pipeline-dev
+
+# View Airflow logs
+kubectl logs -n data-pipeline-dev deployment/airflow -f
+
+# Access Airflow UI
+minikube service airflow -n data-pipeline-dev
+```
+
+#### Deploy to Production
+
+```bash
+# Deploy all resources to prod namespace
+kubectl apply -k deploy/prod/
+
+# Check deployment status
+kubectl get all -n data-pipeline-prod
+
+# View Airflow logs
+kubectl logs -n data-pipeline-prod deployment/airflow -f
+
+# Access Airflow UI
+minikube service airflow -n data-pipeline-prod
+```
+
+#### Useful Kubernetes Commands
+
+```bash
+# Get all resources in a namespace
+kubectl get all -n data-pipeline-dev
+
+# Describe a specific pod
+kubectl describe pod <pod-name> -n data-pipeline-dev
+
+# Execute command in a pod
+kubectl exec -it <pod-name> -n data-pipeline-dev -- bash
+
+# Port forward to access services
+kubectl port-forward svc/airflow 8080:8080 -n data-pipeline-dev
+
+# Delete all resources
+kubectl delete -k deploy/dev/
+
+# Restart a deployment
+kubectl rollout restart deployment/airflow -n data-pipeline-dev
+```
+
+---

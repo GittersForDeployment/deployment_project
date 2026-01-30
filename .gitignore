@@ -9,3 +9,10 @@ __pycache__/
 .DS_Store
 .idea/
 .vscode/
+
+# Kubernetes .env files (copies from root)
+k8s/*/.env
+
+# Kubernetes binaries (install locally, don't commit)
+kubectl
+minikube*
